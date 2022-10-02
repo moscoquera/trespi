@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: trespi
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: test
+      PGADMIN_DISABLE_POSTFIX: true
+    ports:
+      - 5480:80
+
+  backend:
+    image: node:latest
+    depends_on:
+      - db
+    user: "node"
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/app
+    expose:
+      - "3000"
+    command: "npm run start:dev"
+
+    ports:
+      - 3000:3000
+
