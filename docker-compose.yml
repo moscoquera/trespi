@@ -21,19 +21,21 @@ services:
       - 5480:80
 
   backend:
-    image: node:latest
+    build:
+      dockerfile: Dockerfile
+      context: .
     depends_on:
       - db
-    user: "node"
+    user: "0:0"
     working_dir: /app
     environment:
       - NODE_ENV=development
-    volumes:
-      - ./:/app
     expose:
       - "3000"
-    command: "npm run start:dev"
-
     ports:
       - 3000:3000
+
+secrets:
+  user_ssh_key:
+    file: ../../.ssh/id_rsa
 

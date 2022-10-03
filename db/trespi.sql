@@ -55,29 +55,27 @@ CREATE TABLE IF NOT EXISTS users
 
 ALTER TABLE IF EXISTS products_sales
     ADD CONSTRAINT product_sales_sales_fk FOREIGN KEY (sales_id)
-    REFERENCES sales (id) MATCH SIMPLE
+    REFERENCES sales (id)
     ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+    ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS products_sales
     ADD FOREIGN KEY (products_id)
-    REFERENCES products (id) MATCH SIMPLE
+    REFERENCES products (id)
     ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+    ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS sales
     ADD CONSTRAINT sales_users_fk FOREIGN KEY (user_id)
-    REFERENCES users (id) MATCH SIMPLE
+    REFERENCES users (id)
     ON UPDATE NO ACTION
     ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS users
     ADD CONSTRAINT users_roles_fk FOREIGN KEY (roles_id)
-    REFERENCES roles (id) MATCH SIMPLE
+    REFERENCES roles (id)
     ON UPDATE NO ACTION
     ON DELETE NO ACTION;
