@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SalesModule } from './sales/sales.module';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { UsersModule } from './users/users.module';
       synchronize: true
 
     }),
-    SalesModule, UsersModule],
+    SalesModule, UsersModule, ProductsModule],
   controllers: [AppController],
   providers: [AppService],
 })

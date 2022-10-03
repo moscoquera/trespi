@@ -67,7 +67,7 @@ export class UsersService {
 
   async remove(id: string) {
     const user = await this.findOne(id);
-    await this.repo.softDelete(user);
+    await this.repo.softDelete({id});
     return user;
   }
 }
