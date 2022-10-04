@@ -1,4 +1,4 @@
-import { User } from "src/users/entities/user.entity";
+import { User } from "../../../src/users/entities/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { SaleProduct } from "./saleProduct.entity";
 
@@ -14,7 +14,7 @@ export class Sale {
     @ManyToOne(() => User, (u) => u.sales)
     user: User;
 
-    @OneToMany(()=>SaleProduct, (product) => product.sale, { cascade: true})
+    @OneToMany(()=>SaleProduct, (product) => product.sale, { cascade: true, onDelete:'CASCADE'})
     products:SaleProduct[];
 
     @CreateDateColumn({name: 'created_at'})

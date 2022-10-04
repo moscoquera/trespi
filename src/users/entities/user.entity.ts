@@ -1,5 +1,5 @@
-import { Sale } from "src/sales/entities/sale.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Sale } from "../../../src/sales/entities/sale.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Roles } from "./roles.entity";
 
 @Entity('users')
@@ -21,6 +21,7 @@ export class User {
     rolesId: string;
 
     @ManyToOne(() => Roles, (role) => role.users)
+    @JoinColumn({name:'roles_id'})
     role?: Roles;
 
     @OneToMany(() => Sale, (sale) => sale.user)

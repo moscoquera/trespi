@@ -7,6 +7,9 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { SalesModule } from './sales/sales.module';
+import { ReportsModule } from './reports/reports.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './common/guards/roles.guard';
 
 @Module({
   imports: [
@@ -22,8 +25,11 @@ import { SalesModule } from './sales/sales.module';
       synchronize: true
 
     }),
-    SalesModule, UsersModule, ProductsModule],
-  controllers: [AppController],
-  providers: [AppService],
+    SalesModule, UsersModule, ProductsModule, ReportsModule],
+  controllers: [],
+  providers: [{
+    provide: APP_GUARD,
+    useClass: RolesGuard,
+  },],
 })
 export class AppModule {}

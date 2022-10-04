@@ -1,5 +1,5 @@
-import { ColumnNumericTransformer } from "src/common/transformers/ColumnNumericTransformer.transformer";
-import { Product } from "src/products/entities/product.entity";
+import { ColumnNumericTransformer } from "../../../src/common/transformers/ColumnNumericTransformer.transformer";
+import { Product } from "../../../src/products/entities/product.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Sale } from "./sale.entity";
 

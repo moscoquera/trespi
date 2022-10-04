@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Logger } from '@nest
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Roles } from 'src/common/decorator/roles.decorator';
 
 @Controller('users')
+@Roles('ADMIN')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
