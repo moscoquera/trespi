@@ -26,7 +26,7 @@ export class ProductsService {
   async findOne(id: string) {
     const user = await this.repo.findOneBy({id});
     if(!user){
-      throw new NotFoundException('product not found');
+      throw new NotFoundException(`product not found: ${id}`);
     }
     return user;
   }
