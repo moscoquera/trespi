@@ -1,6 +1,6 @@
 import { ColumnNumericTransformer } from "../../../src/common/transformers/ColumnNumericTransformer.transformer";
 import { SaleProduct } from "../../../src/sales/entities/saleProduct.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('products')
 export class Product {
@@ -17,8 +17,8 @@ export class Product {
     @Column({type: 'numeric', precision: 10, scale: 2, transformer: new ColumnNumericTransformer()})
     price: number;
 
-    @ManyToOne(()=>SaleProduct, (sale) => sale.product)
-    sales:SaleProduct;
+    @OneToMany(()=>SaleProduct, (sale) => sale.product)
+    sales:SaleProduct[];
 
     @CreateDateColumn({name: 'created_at'})
     createdAt: Date;

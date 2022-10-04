@@ -16,11 +16,12 @@ export class RolesGuard implements CanActivate {
     if(!user){
         throw new UnauthorizedException();
     }
-    user = await this.userService.findOne(user);
-    
-    if(!user){
-        throw new UnauthorizedException();
+    try{
+      user = await this.userService.findOne(user);
+    }catch(err){
+      throw new UnauthorizedException();
     }
+    
     return roles.includes(user.role.name);
   }
 }

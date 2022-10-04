@@ -2,7 +2,7 @@ import { User } from "../../../src/users/entities/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { SaleProduct } from "./saleProduct.entity";
 
-@Entity()
+@Entity('sales')
 export class Sale {
 
     @PrimaryGeneratedColumn('uuid')

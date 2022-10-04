@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Headers } from '@nestjs/common';
 import { SalesService } from './sales.service';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
@@ -10,8 +10,8 @@ export class SalesController {
 
   @Post()
   @Roles('ADMIN','EMPLOYEE')
-  create(@Body() createSaleDto: CreateSaleDto) {
-    return this.salesService.create(createSaleDto,"4608896d-4ee2-4510-8ab3-a41a233c9944");
+  create(@Body() createSaleDto: CreateSaleDto, @Headers() headers) {
+    return this.salesService.create(createSaleDto,headers['auth']);
   }
 
   @Get()
